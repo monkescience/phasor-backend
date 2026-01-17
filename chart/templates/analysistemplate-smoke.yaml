@@ -1,0 +1,22 @@
+{{- if .Values.rollout.smokeTest.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: {{ include "phasor-backend.fullname" . }}-smoke
+  labels:
+    {{- include "phasor-backend.labels" . | nindent 4 }}
+spec:
+  args:
+    - name: service-url
+  metrics:
+    - name: health-check
+      count: 3
+      interval: 10s
+      failureLimit: 1
+      provider:
+        web:
+          url: "{{`{{args.service-url}}`}}/health/ready"
+          jsonPath: "{$.status}"
+          timeoutSeconds: 5
+      successCondition: result == "ok"
+{{- end }}

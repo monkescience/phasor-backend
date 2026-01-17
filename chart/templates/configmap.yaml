@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "phasor-backend.fullname" . }}
+  labels:
+    {{- include "phasor-backend.labels" . | nindent 4 }}
+data:
+  config.yaml: |
+    version: {{ .Chart.AppVersion | quote }}
+    environment: {{ .Values.config.environment | quote }}
+    log_config:
+      level: {{ .Values.config.logLevel | quote }}
+      format: {{ .Values.config.logFormat | quote }}
+      add_source: false
