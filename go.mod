@@ -4,7 +4,7 @@ go 1.25.5
 
 require (
 	github.com/getkin/kin-openapi v0.133.0
-	github.com/go-chi/chi/v5 v5.2.3
+	github.com/go-chi/chi/v5 v5.2.5
 	github.com/monkescience/testastic v0.0.0-20260110183745-7d1d3221de59
 	github.com/monkescience/vital v0.0.0-20251223172315-8503480c42fe
 	github.com/oapi-codegen/oapi-codegen/v2 v2.5.1
